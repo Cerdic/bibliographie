@@ -1,0 +1,41 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_ouvrage,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_ouvrage' value='#ENV{id_ouvrage}' />
+		<ul>
+
+			[(#SAISIE{input, titre, obligatoire=oui,
+				label=<:ouvrage:label_titre:>})]
+
+			[(#SAISIE{input, soustitre,
+				label=<:ouvrage:label_soustitre:>})]
+
+			[(#SAISIE{input, auteur,
+				label=<:ouvrage:label_auteur:>})]
+
+			[(#SAISIE{input, ref,
+				label=<:ouvrage:label_ref:>})]
+
+			[(#SAISIE{input, url,
+				label=<:ouvrage:label_url:>})]
+
+			[(#SAISIE{textarea, descriptif,
+				label=<:ouvrage:label_descriptif:>})]
+
+			[(#SAISIE{input, annee,
+				label=<:ouvrage:label_annee:>})]
+
+			[(#SAISIE{input, editeur,
+				label=<:ouvrage:label_editeur:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

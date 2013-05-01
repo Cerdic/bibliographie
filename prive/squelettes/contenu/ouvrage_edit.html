@@ -1,0 +1,30 @@
+[(#ID_OBJET|oui)
+	[(#AUTORISER{modifier,ouvrage,#ID_OUVRAGE}|sinon_interdire_acces)]
+][(#ID_OBJET|non)
+	[(#AUTORISER{creer,ouvrage}|sinon_interdire_acces)]
+]
+ 
+#SET{redirect,#ENV{redirect}|sinon{#ID_OUVRAGE|?{#ID_OUVRAGE|generer_url_entite{ouvrage},#URL_ECRIRE{ouvrages}}}}
+
+<div class='cadre-formulaire-editer'>
+<div class="entete-formulaire">
+	[(#ID_OUVRAGE|oui)
+	[(#GET{redirect}|icone_verticale{Retour,ouvrage,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_OUVRAGE|?{<:ouvrage:icone_modifier_ouvrage:>,<:ouvrage:icone_creer_ouvrage:>})]
+		<h1>(#ENV{titre,#INFO_TITRE{ouvrage,#ID_OUVRAGE}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_OUVRAGE|generer_url_entite{ouvrage}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_OUVRAGE{#ENV{id_ouvrage,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

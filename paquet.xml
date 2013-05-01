@@ -1,0 +1,33 @@
+<paquet
+	prefix="biblio"
+	categorie="divers"
+	version="1.0.0"
+	etat="test"
+	compatibilite="[3.0.5;3.0.*]"
+	logo="prive/themes/spip/images/biblio-32.png"
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2013-05-01 17:49:12
+	-->
+
+	<nom>Bibliographie</nom>
+
+	<auteur lien="http://yterium.net/">Cédric</auteur>
+	<auteur lien="http://spip.tetue.net/">Tetue</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies" compatibilite="[1.24.0;]" /> 
+
+	<pipeline nom="autoriser" inclure="biblio_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/biblio.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/biblio.php" /> 
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/biblio.php" /> 
+	<pipeline nom="afficher_complement_objet" inclure="biblio_pipelines.php" />
+	<pipeline nom="optimiser_base_disparus" inclure="biblio_pipelines.php" /> 
+
+	<menu nom="ouvrages" titre="ouvrage:titre_ouvrages" parent="menu_edition" icone="images/ouvrage-16.png" action="ouvrages" /> 
+	<menu nom="ouvrage_creer" titre="ouvrage:icone_creer_ouvrage" parent="outils_rapides" icone="images/ouvrage-new-16.png" action="ouvrage_edit" parametres="new=oui" /> 
+</paquet>

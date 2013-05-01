@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/ouvrages, par=titre, env, ajax, sinon=<:ouvrage:info_aucun_ouvrage:>}>
+
+[(#AUTORISER{creer,ouvrage})
+	[(#URL_ECRIRE{ouvrage_edit,new=oui}|icone_verticale{<:ouvrage:icone_creer_ouvrage:>,ouvrage,new,right})]
+]

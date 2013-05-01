@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,ouvrage,#ID_OUVRAGE}|sinon_interdire_acces)]
+<BOUCLE_ouvrage(OUVRAGES){id_ouvrage}{statut==.*}{si #ENV{exec}|=={ouvrage}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,ouvrage,#ID_OUVRAGE})
+		[(#ID_OUVRAGE|afficher_qui_edite{ouvrage}|non)
+			[(#URL_ECRIRE{ouvrage_edit,id_ouvrage=#ID_OUVRAGE}|icone_verticale{<:ouvrage:icone_modifier_ouvrage:>,ouvrage,edit,right ajax preload})]
+		]
+		[(#ID_OUVRAGE|afficher_qui_edite{ouvrage}|oui)
+			[(#URL_ECRIRE{ouvrage_edit,id_ouvrage=#ID_OUVRAGE}|icone_verticale{#ID_OUVRAGE|afficher_qui_edite{ouvrage},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#TITRE|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{ouvrage-24.png}|balise_img{ouvrage,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{ouvrage,#ID_OUVRAGE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/ouvrage,id=#ID_OUVRAGE,id_ouvrage=#ID_OUVRAGE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,ouvrage,#ID_OUVRAGE})
+	[(#ID_OUVRAGE|afficher_qui_edite{ouvrage}|non)
+		[(#URL_ECRIRE{ouvrage_edit,id_ouvrage=#ID_OUVRAGE}|icone_verticale{<:ouvrage:icone_modifier_ouvrage:>,ouvrage,edit,right ajax preload})]
+	]
+	[(#ID_OUVRAGE|afficher_qui_edite{ouvrage}|oui)
+		[(#URL_ECRIRE{ouvrage_edit,id_ouvrage=#ID_OUVRAGE}|icone_verticale{#ID_OUVRAGE|afficher_qui_edite{ouvrage},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,ouvrage,id,#ID_OUVRAGE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
+]
+</BOUCLE_ouvrage>
+[(#ENV**{exec}|=={ouvrage_edit}|?{#INCLURE{fond=prive/squelettes/contenu/ouvrage_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_ouvrage>

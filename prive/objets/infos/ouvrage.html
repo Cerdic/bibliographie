@@ -1,0 +1,28 @@
+<BOUCLE_ouvrage(OUVRAGES){id_ouvrage=#ENV{id}}{statut?}>
+<div class='infos'>
+[(#SET{texte_objet,<:ouvrage:titre_ouvrage:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_OUVRAGE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{ouvrages,#ID_OUVRAGE})]
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(OUVRAGES){id_ouvrage}>
+	[(#VAL{redirect}
+		|generer_url_action{type=ouvrages&id=#ID_OUVRAGE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,ouvrages,#ID_OUVRAGE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=ouvrages&id=#ID_OUVRAGE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_ouvrage>

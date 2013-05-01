@@ -1,0 +1,43 @@
+<BOUCLE_ouvrage(OUVRAGES){id_ouvrage}{statut?}>
+
+[<div class="champ contenu_titre[ (#TITRE*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_titre:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{titre} titre'>(#TITRE)</span>
+</div>]
+
+[<div class="champ contenu_soustitre[ (#SOUSTITRE*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_soustitre:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{soustitre} soustitre'>(#SOUSTITRE)</span>
+</div>]
+
+[<div class="champ contenu_auteur[ (#AUTEUR*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_auteur:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{auteur} auteur'>(#AUTEUR)</span>
+</div>]
+
+[<div class="champ contenu_ref[ (#REF*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_ref:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{ref} ref'>(#REF)</span>
+</div>]
+
+[<div class="champ contenu_url[ (#URL*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_url:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{url} url'>(#URL)</span>
+</div>]
+
+[<div class="champ contenu_descriptif[ (#DESCRIPTIF*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_descriptif:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{descriptif} descriptif'>(#DESCRIPTIF)</span>
+</div>]
+
+[<div class="champ contenu_annee[ (#ANNEE*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_annee:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{annee} annee'>(#ANNEE)</span>
+</div>]
+
+[<div class="champ contenu_editeur[ (#EDITEUR*|strlen|?{'',vide})]">
+	<label><:ouvrage:label_editeur:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{editeur} editeur'>(#EDITEUR)</span>
+</div>]
+
+</BOUCLE_ouvrage>
